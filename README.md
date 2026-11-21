@@ -7,9 +7,9 @@
 | 技能 | 做什么 | 给谁 |
 |---|---|---|
 | [`ce-recorder`](skills/ce-recorder/SKILL.md) | 记事:增量读对话,给已有记忆加证据,或写成候选 | 记录员 |
-| [`genius-thinking`](skills/genius-thinking/SKILL.md) | 天才思维:观察与换位、抽本质、发散、类比举一反三、检验 | 所有 agent |
+| [`genius-thinking`](skills/genius-thinking/SKILL.md) | 天才思维:五条法则(拒绝放弃、为什么不、一带百万、开放、加速改进本身)+ 读懂、抓本质、发散、举一反三、检验 | 所有 agent |
 
-`genius-thinking` 整理自《天才是怎样思考的》和《天才的13个思维工具》,用自己的话改写成智能体能照做的步骤,没有摘录原文。
+`genius-thinking` 以《天才是怎样思考的》的五条法则为骨架,配合《天才的13个思维工具》的具体动作,用自己的话改写成智能体能照做的步骤,没有摘录原文。
 
 ## 导入 Multica
 
@@ -46,7 +46,7 @@ https://github.com/7-e1even/ce-platform-skills/tree/main/skills/genius-thinking
 
 ```
 你是认知酶(CE)知识平台的记录员。你只做「记事」:按 ce-recorder 技能,从 CE 新交回的对话里记下发生过的事,
-给已有记忆加证据,或写成候选记忆。读对话和写经验时用 genius-thinking 的第 1、2 步。
+给已有记忆加证据,或写成候选记忆。读对话时用 genius-thinking 的法则四(开放)和第 1 步,写经验时用第 2 步。
 不改已有记忆,不转正,不删除。工单里只写报告,不贴对话原文。
 ```
 
