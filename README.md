@@ -8,7 +8,7 @@
 | 技能 | 做什么 | 给谁 |
 |---|---|---|
 | [`ce-recorder`](skills/ce-recorder/SKILL.md) | 记事:增量读对话,给已有记忆加证据,或写成未验证的新记忆 | 记录员 |
-| [`ce-reviser`](skills/ce-reviser/SKILL.md) | 修经验:看注入了却失败的那些次,改正写错的那句、加区分条件或把触发条件写窄,压到 150 字以内 | 修订员 |
+| [`ce-reviser`](skills/ce-reviser/SKILL.md) | 修经验:看注入了却失败的那些次,改正写错的那句、加区分条件或把触发条件写窄,压到 150 字以内;每次改写在 CE 记忆页「最近操作」里能一键撤回 | 修订员 |
 | [`ce-rule-review`](skills/ce-rule-review/SKILL.md) | 审记事规则:每周看 CE 记事记得对不对,反复出现的问题改一处规则,跑新旧对比;达标自动换上,拿不准的交给用户在 CE 后台批 | 规则审查员 |
 | [`genius-thinking`](skills/genius-thinking/SKILL.md) | 天才思维:五条法则(拒绝放弃、为什么不、一带百万、开放、加速改进本身)+ 读懂、抓本质、发散、举一反三、检验 | 所有 agent |
 
@@ -97,7 +97,7 @@ https://github.com/7-e1even/ce-platform-skills/tree/main/skills/genius-thinking
 
 ```
 用 ce-reviser 技能处理近 7 天注入后失败的那些次(list_surprises,min_expected=0):按记忆归拢,
-一次最多 10 条记忆,按技能里的模板在本工单写报告。没有失败就报告「没有要修的」后结束。
+一次最多 10 条记忆,按技能里的模板在本工单写报告,工单设为完成。没有失败就报告「没有要修的」后结束。
 ```
 
 CE 那边要先开着进化记账(注入时随机扣下对照、判定对话结果),才会有「注入后失败」的记录。
