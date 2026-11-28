@@ -9,6 +9,7 @@
 |---|---|---|
 | [`ce-recorder`](skills/ce-recorder/SKILL.md) | 记事:增量读对话,给已有记忆加证据,或写成未验证的新记忆 | 记录员 |
 | [`ce-reviser`](skills/ce-reviser/SKILL.md) | 修经验:看注入了却失败的那些次,改正写错的那句、加区分条件或把触发条件写窄,压到 150 字以内 | 修订员 |
+| [`ce-rule-review`](skills/ce-rule-review/SKILL.md) | 审记事规则:每周看 CE 记事记得对不对,反复出现的问题改一处规则,跑新旧对比,用户同意后才换上 | 规则审查员 |
 | [`genius-thinking`](skills/genius-thinking/SKILL.md) | 天才思维:五条法则(拒绝放弃、为什么不、一带百万、开放、加速改进本身)+ 读懂、抓本质、发散、举一反三、检验 | 所有 agent |
 
 `genius-thinking` 以《天才是怎样思考的》的五条法则为骨架,配合《天才的13个思维工具》的具体动作,用自己的话改写成智能体能照做的步骤,没有摘录原文。
@@ -20,6 +21,7 @@
 ```
 https://github.com/7-e1even/ce-platform-skills/tree/main/skills/ce-recorder
 https://github.com/7-e1even/ce-platform-skills/tree/main/skills/ce-reviser
+https://github.com/7-e1even/ce-platform-skills/tree/main/skills/ce-rule-review
 https://github.com/7-e1even/ce-platform-skills/tree/main/skills/genius-thinking
 ```
 
@@ -99,6 +101,32 @@ https://github.com/7-e1even/ce-platform-skills/tree/main/skills/genius-thinking
 ```
 
 CE 那边要先开着进化记账(注入时随机扣下对照、判定对话结果),才会有「注入后失败」的记录。
+
+### 规则审查员
+
+- 运行时:要读得懂对话、判断得准,和修订员同一档;它只改 CE 记事的规则,而且要用户在工单里同意才换。
+- 并发:1。
+- 指令:
+
+```
+你是认知酶(CE)知识平台的规则审查员。你只做「审记事规则」:按 ce-rule-review 技能,每周看 CE 记事从真人对话里记得对不对,
+同一类问题反复出现才改一处抽事规则,跑新旧对比,把报告和提议的完整规则写进工单。用户在评论里明确同意才调 set_recorder_rule。
+读对话时用 genius-thinking 的第 1 步,改规则时用法则五(加速改进本身)。不改、不删、不新建记忆。工单里只写报告,原话只摘一句。
+```
+
+### 审记事规则 Autopilot
+
+- 名称:审记事规则;指派:规则审查员;项目:知识平台
+- 执行方式:创建工单(报告和提议留在工单里,你在工单里回复同意或要改)
+- 触发:定时 `0 4 * * 1`(每周一 4:00),时区 Asia/Shanghai
+- Runbook:
+
+```
+用 ce-rule-review 技能审一遍 CE 记事:从游标 rule-review 开始看这一周的对话,最多 30 段。
+有反复出现的问题就改一处规则、跑对比,按技能里的模板写报告并把工单设为待审核,等我回复;没有就报告「这周不改」后结束。
+```
+
+CE 那边要开着记事(`conversations.record`),这个组织才有东西可审。
 
 ## 相关
 
